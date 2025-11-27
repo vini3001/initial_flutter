@@ -13,10 +13,14 @@ class HomePage extends StatefulWidget{
 class HomePageState extends State<HomePage> {
   int counter = 0;
 
-
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Page'),
+        backgroundColor: Colors.blue,
+      ),
+      body: Center(
       child: GestureDetector(
         child: Text('Contador: $counter'),
         onTap: () {
@@ -25,5 +29,6 @@ class HomePageState extends State<HomePage> {
           });
         },
       ),
-      );
+      ),
+    );
   }}
