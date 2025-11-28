@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:initial_project/app_controller.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
@@ -27,17 +28,12 @@ class HomePageState extends State<HomePage> {
           });
         },
       ),
-      body: Container(
-        height: 200,
-        width: 200,
-        color: Colors.black,
-        child: Center(
-          child: Container(
-          height: 100,
-          width: 100,
-          color: Colors.green,
-        )
-        )
+      body: Center(
+        child: Switch(
+         value: AppController.instance.isDarkTheme,
+         onChanged: (value) {
+          AppController.instance.changeTheme();
+         })
       )
     );
   }}
