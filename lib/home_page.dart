@@ -28,8 +28,16 @@ class HomePageState extends State<HomePage> {
           });
         },
       ),
-      body: Center(
-        child: CustomSwitch()
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column( 
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Contador: $counter'),
+            CustomSwitch()
+          ]
+      )
       )
     );
   }}
