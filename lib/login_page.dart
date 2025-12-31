@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:initial_project/home_page.dart';
 
 class LoginPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
+
+  String email = '';
+  String password = '';
+
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +39,8 @@ class LoginPage extends StatelessWidget {
                       if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+').hasMatch(value)) {
                         return 'Insira um email válido';
                       }
+
+                      email = value;
                       return null;
                     },
                   ),
@@ -50,6 +58,8 @@ class LoginPage extends StatelessWidget {
                       if (value.length < 6) {
                         return 'A senha deve ter pelo menos 6 caracteres';
                       }
+
+                      password = value;
                       return null;
                     },
                   ),
@@ -79,9 +89,21 @@ class LoginPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState?.validate() == true) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Login realizado com sucesso!')),
-                        );
+                        if (email == 'admin@example.com' && password == 'admin123') {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Login realizado com sucesso!')),
+                          );
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => const HomePage()),
+                          );
+                          return;
+                        }
+                        else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Email ou senha incorretos.')),
+                          );
+                        } 
                       }
                     },
                     child: const Text('Login'),
